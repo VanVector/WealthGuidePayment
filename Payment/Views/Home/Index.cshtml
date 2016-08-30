@@ -1,0 +1,63 @@
+﻿@using Payment.Controllers
+@using Payment.Models
+@model Payment.Models.CreditCardViewModel
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+</head>
+<body>
+<div>
+
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        @Html.ValidationSummary()
+        <div>
+            @Html.LabelFor(x => x.Number)
+            @Html.TextBoxFor(x => x.Number)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.CVC)
+            @Html.TextBoxFor(x => x.CVC)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.ExiprationMonth)
+            @Html.TextBoxFor(x => x.ExiprationMonth)
+        </div>
+        <div>
+            @Html.LabelFor(x => x.ExpirationYear)
+            @Html.TextBoxFor(x => x.ExpirationYear)
+        </div>
+        <button type="submit">Submit Payment</button>
+    }
+
+    @{
+        var previousData = ViewData[HomeController.CreditCardViewModelKey] as CreditCardViewModel;
+    }
+    @if (previousData != null)
+    {
+        <div>
+            Credit card info posted Previously:
+            <div>
+                @Html.LabelFor(x => x.Number)
+                @previousData.Number
+            </div>
+            <div>
+                @Html.LabelFor(x => x.CVC)
+                @previousData.CVC
+            </div>
+            <div>
+                @Html.LabelFor(x => x.ExiprationMonth)
+                @previousData.ExiprationMonth
+            </div>
+            <div>
+                @Html.LabelFor(x => x.ExpirationYear)
+                @previousData.ExpirationYear
+            </div>
+        </div>
+    }
+</div>
+</body>
+</html>

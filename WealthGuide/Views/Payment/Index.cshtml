@@ -1,0 +1,129 @@
+﻿@using System.Security.Policy
+@using Payment.Models
+@using WealthGuide.Controllers
+@model Payment.Models.CreditCardViewModel
+
+@{
+    ViewBag.Title = "Buy a Plan";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+<div class="row">
+    <div class="col-sm-4">
+        @using (Html.BeginForm("Index", "Payment", FormMethod.Post ))
+        {
+            @Html.ValidationSummary()
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Credit Card Information
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.Number, new {@class = " control-label"})
+                                <div class="clearfix"></div>
+                                @Html.TextBoxFor(m => m.Number, new {@class = "form-control"})
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div class="form-group">
+                                @Html.LabelFor(m => m.CVC, new {@class = "col-md-5 control-label"})
+                                <div class="clearfix"></div>
+                                <div class="input-group">
+                                    @Html.TextBoxFor(m => m.CVC, new {@class = "form-control"})
+                                    <span class="input-group-addon" id="CVC-popover" style="height: 34px;" data-toggle="popover" data-content='<img src="/Content/Images/cvv.code_.image_.may_.2016.jpg" style="width: 200px; height: 161px;"/>' title="Card Verification Code" data-html="true" data-trigger="hover">?</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Expiration</label>
+                        <div class="clearfix"></div>
+                        @Html.DropDownListFor(x => x.ExiprationMonth, new List<SelectListItem>()
+                        {
+                            new SelectListItem() { Text = "MM", Disabled = true },
+                            new SelectListItem() { Text = "01", Value = "1" },
+                            new SelectListItem() { Text = "02", Value = "2" },
+                            new SelectListItem() { Text = "03", Value = "3" },
+                            new SelectListItem() { Text = "04", Value = "4" },
+                            new SelectListItem() { Text = "05", Value = "5" },
+                            new SelectListItem() { Text = "06", Value = "6" },
+                            new SelectListItem() { Text = "07", Value = "7" },
+                            new SelectListItem() { Text = "08", Value = "8" },
+                            new SelectListItem() { Text = "09", Value = "9" },
+                            new SelectListItem() { Text = "10", Value = "10" },
+                            new SelectListItem() { Text = "11", Value = "11" },
+                            new SelectListItem() { Text = "12", Value = "12" },
+                        }, new { style = "max-width: 60px;" }) /
+                        @Html.DropDownListFor(x => x.ExpirationYear, new List<SelectListItem>()
+                        {
+                            new SelectListItem() { Text = "2016", Value = "2016" },
+                            new SelectListItem() { Text = "2017", Value = "2017" },
+                            new SelectListItem() { Text = "2018", Value = "2018" },
+                            new SelectListItem() { Text = "2019", Value = "2019" },
+                            new SelectListItem() { Text = "2020", Value = "2020" },
+                            new SelectListItem() { Text = "2021", Value = "2021" },
+                            new SelectListItem() { Text = "2022", Value = "2022" },
+                        }, new { style="max-width: 80px;" })
+                    </div>
+                    <div class="form-group">
+                    </div>
+                    @*<div>
+                        @Html.LabelFor(x => x.CVC)
+                        @Html.TextBoxFor(x => x.CVC)
+                    </div>
+                    <div>
+                        @Html.LabelFor(x => x.ExiprationMonth)
+                        @Html.TextBoxFor(x => x.ExiprationMonth)
+                    </div>
+                    <div>
+                        @Html.LabelFor(x => x.ExpirationYear)
+                        @Html.TextBoxFor(x => x.ExpirationYear)
+                    </div>*@
+                </div>
+                <div class="panel-footer">
+                    <button type="submit" class="btn btn-primary">Submit Payment</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@{
+    var previousData = ViewData[PaymentController.CreditCardViewModelKey] as CreditCardViewModel;
+}
+@if (previousData != null)
+{
+    <div>
+        Credit card info posted Previously:
+        <div>
+            @Html.LabelFor(x => x.Number)
+            @previousData.Number
+        </div>
+        <div>
+            @Html.LabelFor(x => x.CVC)
+            @previousData.CVC
+        </div>
+        <div>
+            @Html.LabelFor(x => x.ExiprationMonth)
+            @previousData.ExiprationMonth
+        </div>
+        <div>
+            @Html.LabelFor(x => x.ExpirationYear)
+            @previousData.ExpirationYear
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script type="text/javascript">
+        $("#CVC-popover").popover();
+        $("#Number").kendoMaskedTextBox({ mask: "0000 0000 0000 0000" });
+        $("#CVC").kendoMaskedTextBox({ mask: "000" });
+        $("#ExiprationMonth").kendoDropDownList();
+        $("#ExpirationYear").kendoDropDownList();
+    </script>
+}

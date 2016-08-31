@@ -5,6 +5,19 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment", "Payment\Payment.csproj", "{086F495E-30D6-4525-932B-D14F3DFCB23D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{F1F4865E-9384-4E72-8629-BF765528E7FA}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureVMPublishModule.psm1 = PublishScripts\AzureVMPublishModule.psm1
+		PublishScripts\Publish-WebApplicationVM.ps1 = PublishScripts\Publish-WebApplicationVM.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{EEDA67B7-267E-40C2-AE24-A8768696B8E5}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\WealthGuide-WAWS-dev.json = PublishScripts\Configurations\WealthGuide-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WealthGuide", "WealthGuide\WealthGuide.csproj", "{BB875449-487D-4509-9AB0-F48A254ED6BE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +28,15 @@ Global
 		{086F495E-30D6-4525-932B-D14F3DFCB23D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{086F495E-30D6-4525-932B-D14F3DFCB23D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{086F495E-30D6-4525-932B-D14F3DFCB23D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB875449-487D-4509-9AB0-F48A254ED6BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB875449-487D-4509-9AB0-F48A254ED6BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB875449-487D-4509-9AB0-F48A254ED6BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB875449-487D-4509-9AB0-F48A254ED6BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EEDA67B7-267E-40C2-AE24-A8768696B8E5} = {F1F4865E-9384-4E72-8629-BF765528E7FA}
 	EndGlobalSection
 EndGlobal
